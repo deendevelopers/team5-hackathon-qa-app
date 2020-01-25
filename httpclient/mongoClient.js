@@ -35,6 +35,7 @@ exports.getUserById = function(req, res){
 }
 
 exports.addQuestionToQuestionTable = function(req, res){
+    var questionId;
     client.connect(err => {
         const questionCollection = client.db("MosqueQA").collection("Question");
         var jsonData = {}; // pass in request directly??
@@ -45,9 +46,29 @@ exports.addQuestionToQuestionTable = function(req, res){
         
         questionCollection.insertOne(jsonData, function(err, response){
             if (err) throw err;
+            else {
+                questionId = jsonData._id;
+            }
         });
 
-        client.close();
+        client.close(); 
+    });
+
+    // Now create one json entry into QA-Map table
+
+    client.connect(err => {
+        const qaMapCollection = client.db("MosqueQA").collection("QA-Map");
+        var jsonData = {}; 
+        jsonData.question_id = questionId;
+        jsonData.from_id = req.userId;
+        jsonData.to_id = req.to_id; // needed? 
+        jsonData.messageBody = req.question_text;
+        
+        qaMapCollection.insertOne(jsonData, function(err, response){
+            if (err) throw err;
+        });
+
+        client.close(); 
     });
 }
 

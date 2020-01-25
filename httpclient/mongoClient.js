@@ -3,13 +3,9 @@ const uri = process.env.db_uri;
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
 
-exports.addUserToApp = function(req, res){
+exports.addUserToApp = function(jsonData, res){
     client.connect(err => {
         const userCollection = client.db("MosqueQA").collection("Users");
-        var jsonData = {}; // pass in request directly??
-        jsonData.name = req.name;
-        jsonData.email = req.email;
-        jsonData.role = req.role;
         
         userCollection.insertOne(jsonData, function(err, response){
             if (err) throw err;
@@ -19,11 +15,10 @@ exports.addUserToApp = function(req, res){
     });
 }
 
-exports.getUserById = function(req, res){
+exports.getUserById = function(searchKey, res){
     client.connect(err => {
         const userCollection = client.db("MosqueQA").collection("Users");
-        var searchKey = req.userId
-        
+
         userCollection.find({"content._id": {searchKey}}).toArray(function(err, response){
             if (!err){
                 res.send(response)
@@ -39,10 +34,10 @@ exports.addQuestionToQuestionTable = function(req, res){
     client.connect(err => {
         const questionCollection = client.db("MosqueQA").collection("Question");
         var jsonData = {}; // pass in request directly??
-        jsonData.category = req.category;
-        jsonData.question_text = req.question_text;
-        jsonData.status = req.status;
-        jsonData.userId = req.userId;
+        jsonData.category = req.params.category;
+        jsonData.question_text = req.params.question_text;
+        jsonData.status = req.params.status;
+        jsonData.userId = req.params.userId;
         
         questionCollection.insertOne(jsonData, function(err, response){
             if (err) throw err;
@@ -58,11 +53,18 @@ exports.addQuestionToQuestionTable = function(req, res){
 
     client.connect(err => {
         const qaMapCollection = client.db("MosqueQA").collection("QA-Map");
-        var jsonData = {}; 
-        jsonData.question_id = questionId;
-        jsonData.from_id = req.userId;
-        jsonData.to_id = req.to_id; // needed? 
-        jsonData.messageBody = req.question_text;
+        var entryData = {};
+        var listOfEntries = []; 
+        entryData.question_id = questionId; // needed?
+        entryData.from_id = req.params.userId;
+        entryData.to_id = req.params.to_id; // needed? 
+        entryData.messageBody = req.params.question_text;
+
+        listOfEntries.push(entryData);
+        
+        var jsonData = {};
+        jsonData["questionId"] = questionId;
+        jsonData["entries"] = listOfEntries;
         
         qaMapCollection.insertOne(jsonData, function(err, response){
             if (err) throw err;
@@ -75,7 +77,7 @@ exports.addQuestionToQuestionTable = function(req, res){
 exports.getQuestionById = function(req, res){
     client.connect(err => {
         const questionCollection = client.db("MosqueQA").collection("Question");
-        var searchKey = req.userId
+        var searchKey = req.params.questionId;
         
         questionCollection.find({"content._id": {searchKey}}).toArray(function(err, response){
             if (!err){
@@ -84,5 +86,59 @@ exports.getQuestionById = function(req, res){
         })
 
         client.close();
-    });
+    }); 
 }
+
+exports.getQaMapByQuestionId = function(req, res){
+    client.connect(err => {
+        const questionCollection = client.db("MosqueQA").collection("QA-Map");
+        var searchKey = req.params.questionId;
+        
+        questionCollection.find({"content.questionId": {searchKey}}).toArray(function(err, response){
+            if (!err){
+                res.send(response)
+            }
+        })
+
+        client.close();
+    }); 
+}
+
+exports.getQaMapByQaMapId = function(req, res){ // Unsure if needed
+    client.connect(err => {
+        const questionCollection = client.db("MosqueQA").collection("QA-Map");
+        var searchKey = req.params.questionId;
+        
+        questionCollection.find({"content._id": {searchKey}}).toArray(function(err, response){
+            if (!err){
+                res.send(response)
+            }
+        })
+
+        client.close();
+    }); 
+}
+
+
+exports.addResponseToQaMap = function(req, res){ // NEEDS WORK
+    client.connect(err => {
+        const questionCollection = client.db("MosqueQA").collection("QA-Map");
+        var searchKey = req.params.questionId;
+
+        var entryData = {};
+        entryData.question_id = searchKey; // needed?
+        entryData.from_id = req.params.userId; // imams id
+        entryData.to_id = req.params.to_id; // needed? 
+        entryData.messageBody = req.params.messageBody;
+        
+        
+        questionCollection.find({"content.questionId": {searchKey}}).toArray(function(err, response){
+            if (!err){
+                res.send(response)
+            }
+        })
+
+        client.close();
+    }); 
+}
+

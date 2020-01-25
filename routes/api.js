@@ -6,8 +6,8 @@ var questionsController = require('../controllers/QuestionsController');
 var responseController = require('../controllers/ResponseController');
 
 /* GET users listing. */
-router.get('/user/userId/:userId', userController.getUserById);
+router.get('/user/userId/:userId', usersController.getUserById);
 
-router.post('/user/:name/:email/:role', userController.addUserToDb);
+router.post('/user/:name/:email/:role', usersController.addUserToDb);
 
 module.exports = router;

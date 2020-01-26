@@ -1,0 +1,29 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <h1>{{title}}</h1>
+  <h2>Ask Your Question</h2>
+  <p>Ask your question anonymously (your identity will not be shared)</p>
+
+  <form action="/success" method="post">
+    <div class="form-group">
+      <label for="categoryId">Select a category</label>
+      <select class="custom-select mt-3" name="category-id" id="categoryId" required>
+        <option value="" selected>Please select your catergory</option>
+        <option value="education">Education</option>
+        <option value="health">Health</option>
+        <option value="faith">Faith</option>
+        <option value="finance">Finance</option>
+        <option value="lifestyle">Lifestyle</option>
+        <option value="marriage">Marriage</option>
+        <option value="other">other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="question">What is your question?</label>
+      <textarea class="form-control" name="question" id="question" rows="8" cols="80"></textarea>
+    </div>
+    <button type="submit" class="btn btn-outline-info btn-lg">Submit question</button>
+  </form>
+
+{% endblock %}

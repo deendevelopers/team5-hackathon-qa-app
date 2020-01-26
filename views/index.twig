@@ -1,6 +1,12 @@
 {% extends 'layout.twig' %}
 
 {% block body %}
-  <h1>{{title}}</h1>
-  <p>Welcome to {{title}}!!!</p>
+<div class="mx-auto text-center" style="width: 200px;">
+    <h1>{{title}}</h1>
+    <p>Welcome to {{title}}!!!</p>
+    <a class="btn btn-outline-info btn-lg" href="/find-mosque">Ask via Mosque</a>
+    <br><br>
+    <a class="btn btn-outline-primary btn-lg" href="/ask-question">Ask General Questions</a>
+</div>
+
 {% endblock %}

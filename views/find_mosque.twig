@@ -1,0 +1,22 @@
+{% extends "layout.twig" %}
+
+{% block body %}
+
+<div class="mx-auto text-center" style="width: 200px;">
+  <h1>{{title}}</h1>
+  <h2 class="w3-wide">YOUR LOCAL MOSQUE</h2>
+  <p class="w3-opacity"><i>Find a local mosque</i></p>
+</div>
+
+<form action="/ask-question" method="GET">
+  <select class="custom-select" name="mosque-id">
+    <option selected>Open this select menu</option>
+    <option value="1">East London mosque</option>
+    <option value="2">Manchester central mosque</option>
+    <option value="3">Glasgow central mosque</option>
+  </select>
+  <button type="submit" class="btn btn-outline-info btn-lg">Find mosque</button>
+</form>
+
+
+{% endblock %}

@@ -10,15 +10,16 @@ a {
   .container .a, .navbar .container .a {
     margin: 0 auto; }
 
+.logo {
+  width: 100px;
+  height: 10%;
+  position: left; }
+
 .bottom-nav {
   border-top: 0.5px solid #eee; }
   .bottom-nav p {
     font-size: 8px; }
   .bottom-nav .bottom-nav__link {
     color: #989898; }
-.logo {
-  width: 100px;
-  height: 10%;
-  position: left; }
 
 /*# sourceMappingURL=style.css.map */

@@ -2,11 +2,10 @@
 
 {% block body %}
 
-<div class="mx-auto text-center" style="width: 200px;">
-  <h1>{{title}}</h1>
-  <h2 class="w3-wide">YOUR LOCAL MOSQUE</h2>
-  <p class="w3-opacity"><i>Find a local mosque</i></p>
-</div>
+
+  <div class="container">
+    <p class="w3-wide" style="text-align: left">Your Local Mosque</p>
+  </div>
 
 <form action="/ask-question" method="GET">
   <select class="custom-select" name="mosque-id">
@@ -15,7 +14,8 @@
     <option value="2">Manchester central mosque</option>
     <option value="3">Glasgow central mosque</option>
   </select>
-  <button type="submit" class="btn btn-outline-info btn-lg">Find mosque</button>
+  <br><br>
+  <button type="submit" class="btn btn-info btn-lg sub-btn">Find mosque</button>
 </form>
 
 

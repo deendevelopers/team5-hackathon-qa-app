@@ -4,14 +4,26 @@ const MongoClient = mongo.MongoClient;
 const uri = "mongodb+srv://MosqueQA:MosqueQA-pass@mosqueqa-qg3mf.azure.mongodb.net/test?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
-const connectToDb = async function(){
+const connectToDbUsers = async function(){
     await client.connect();
     var userCollection = client.db("MosqueQA-DB").collection("Users");
     return userCollection;
 }
 
+const connectToDbQuestions = async function(){
+    await client.connect();
+    var questionCollection = client.db("MosqueQA-DB").collection("Question");
+    return questionCollection;
+}
+
+const connectToDbQaMaps = async function(){
+    await client.connect();
+    var qaMapCollection = client.db("MosqueQA-DB").collection("QA-Map");
+    return qaMapCollection;
+}
+
 exports.addUserToApp = async function(jsonData, res){ 
-    var userCollection = await connectToDb();
+    var userCollection = await connectToDbUsers();
     userCollection.insertOne(jsonData, function(err, response){
         if (err) throw err;
         //res.status(201);
@@ -19,72 +31,48 @@ exports.addUserToApp = async function(jsonData, res){
 }
 
 exports.getUserById = async function(searchKey, res){
-    var userCollection = await connectToDb();
+    var userCollection = await connectToDbUsers();
     var o_id = new mongo.ObjectID(searchKey);
     return userCollection.findOne({"_id": o_id}).then(function(response){
         res.send(response)
     });
 }
 
-// exports.addQuestionToQuestionTable = function(req, res){
-//     var questionId;
-//     client.connect(err => {
-//         const questionCollection = client.db("MosqueQA").collection("Question");
-//         var jsonData = {}; // pass in request directly??
-//         jsonData.category = req.params.category;
-//         jsonData.question_text = req.params.question_text;
-//         jsonData.status = req.params.status;
-//         jsonData.userId = req.params.userId;
-        
-//         questionCollection.insertOne(jsonData, function(err, response){
-//             if (err) throw err;
-//             else {
-//                 questionId = jsonData._id;
-//             }
-//         });
+exports.addQuestionToQuestionTable = async function(jsonData, res){
+    var questionCollection = await connectToDbQuestions();
+    var newQuestionId;
+    questionCollection.insertOne(jsonData, function(err, response){
+        if (err) throw err;
+        newQuestionId = jsonData._id;
+    });
 
-//         client.close(); 
-//     });
+    var qaMapCollection = await connectToDbQaMaps();
+    var entryData = {};
+    var listOfEntries = []; 
+    entryData["question_id"] = newQuestionId; // needed?
+    entryData["from_id"] = jsonData.userId;
+    entryData["to_id"] = "nullString"; // needed? 
+    entryData["messageBody"] = jsonData.question_text;
 
-//     // Now create one json entry into QA-Map table
+    listOfEntries.push(entryData);
+    
+    var jsonDataForMap = {};
+    jsonDataForMap["questionId"] = entryData.questionId;
+    jsonDataForMap["entries"] = listOfEntries;
+    
+    qaMapCollection.insertOne(jsonDataForMap, function(err, response){
+        if (err) throw err;
+    });
+}
 
-//     client.connect(err => {
-//         const qaMapCollection = client.db("MosqueQA").collection("QA-Map");
-//         var entryData = {};
-//         var listOfEntries = []; 
-//         entryData.question_id = questionId; // needed?
-//         entryData.from_id = req.params.userId;
-//         entryData.to_id = req.params.to_id; // needed? 
-//         entryData.messageBody = req.params.question_text;
+exports.getQuestionById = async function(searchKey, res){
+    var questionCollection = await connectToDbQuestions();
+    var o_id = new mongo.ObjectID(searchKey);
+    return questionCollection.findOne({"_id": o_id}).then(function(response){
+        res.send(response)
+    });
+}
 
-//         listOfEntries.push(entryData);
-        
-//         var jsonData = {};
-//         jsonData["questionId"] = questionId;
-//         jsonData["entries"] = listOfEntries;
-        
-//         qaMapCollection.insertOne(jsonData, function(err, response){
-//             if (err) throw err;
-//         });
-
-//         client.close(); 
-//     });
-// }
-
-// exports.getQuestionById = function(req, res){
-//     client.connect(err => {
-//         const questionCollection = client.db("MosqueQA").collection("Question");
-//         var searchKey = req.params.questionId;
-        
-//         questionCollection.find({"content._id": {searchKey}}).toArray(function(err, response){
-//             if (!err){
-//                 res.send(response)
-//             }
-//         })
-
-//         client.close();
-//     }); 
-// }
 
 // exports.getQaMapByQuestionId = function(req, res){
 //     client.connect(err => {

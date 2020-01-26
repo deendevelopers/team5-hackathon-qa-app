@@ -3,11 +3,7 @@ var mongoClient = require('../httpclient/mongoClient');
 module.exports = {
     getUserById: async function(req, res){
         var userId = req.body.userId;
-        debugger;
         mongoClient.getUserById(userId, res);
-        //console.log(resFromDb);
-       // res.send(resFromDb);
-        // OR? return mongoClient.getUserById(userId, null);
     },
     
     addUserToDb: async function(req, res){

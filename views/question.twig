@@ -1,0 +1,30 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <h1>{{title}}</h1>
+  <h2>Ask Your Question</h2>
+  <em>Ask your question anonymously without the fear of being judged</em>
+
+  <form class="" action="/" method="post">
+  <div class="dropdown">
+  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  PLease select your catergory
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+  <a class="dropdown-item" href="#">Education</a>
+  <a class="dropdown-item" href="#">Health</a>
+  <a class="dropdown-item" href="#">Faith</a>
+  <a class="dropdown-item" href="#">Finance</a>
+  <a class="dropdown-item" href="#">Lifestyle</a>
+  <a class="dropdown-item" href="#">Marriage</a>
+</div>
+</div>
+     <br>
+     <div class="w3-textarea w3-select w3-white">
+       <textarea name="question" rows="8" cols="80"></textarea>
+       <br>
+    </div>
+      <button type="button" class="btn btn-outline-info btn-lg">SUBMIT QUESTION</button>
+  </form>
+
+{% endblock %}

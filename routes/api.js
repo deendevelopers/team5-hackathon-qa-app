@@ -10,4 +10,8 @@ router.get('/user/userId/', usersController.getUserById);
 
 router.post('/user', usersController.addUserToDb);
 
+router.get('/question/questionId', questionsController.getQuestionById)
+
+router.post('/question', questionsController.addQuestionAndQaMapToDb);
+
 module.exports = router;

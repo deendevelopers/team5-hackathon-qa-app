@@ -15,6 +15,7 @@ a {
   height: 10%;
   position: left; }
 
+
 .sub-btn {
   width: 100%;
   color: #17badb; }
@@ -34,5 +35,15 @@ a {
 
 .Snt {
   font-size: 30%; }
+
+.top-nav {
+  border-bottom: 0.5px solid #eee; }
+
+.bottom-nav {
+  border-top: 0.5px solid #eee; }
+  .bottom-nav p {
+    font-size: 8px; }
+  .bottom-nav .bottom-nav__link {
+    color: #989898; }
 
 /*# sourceMappingURL=style.css.map */

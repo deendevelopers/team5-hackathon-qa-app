@@ -16,5 +16,9 @@ a {
     font-size: 8px; }
   .bottom-nav .bottom-nav__link {
     color: #989898; }
+.logo {
+  width: 100px;
+  height: 10%;
+  position: left; }
 
 /*# sourceMappingURL=style.css.map */

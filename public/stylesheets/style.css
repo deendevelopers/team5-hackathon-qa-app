@@ -5,4 +5,14 @@ body {
 a {
   color: #00B7FF; }
 
+.container, .navbar .container {
+  text-align: center; }
+  .container .a, .navbar .container .a {
+    margin: 0 auto; }
+
+.logo {
+  width: 100px;
+  height: 10%;
+  position: left; }
+
 /*# sourceMappingURL=style.css.map */

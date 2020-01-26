@@ -1,18 +1,22 @@
 var mongoClient = require('../httpclient/mongoClient');
 
 module.exports = {
-    getUserById: function(req, res){
-        var userId = req.params.userId;
-        res.send(mongoClient.getUserById(userId, null));
+    getUserById: async function(req, res){
+        var userId = req.body.userId;
+        debugger;
+        mongoClient.getUserById(userId, res);
+        //console.log(resFromDb);
+       // res.send(resFromDb);
         // OR? return mongoClient.getUserById(userId, null);
     },
     
-    addUserToDb: function(req, res){
+    addUserToDb: async function(req, res){
+        //var reqData = JSON.parse(req);
         var jsonData = {}; 
-        jsonData["name"] = req.params.name;
-        jsonData["email"] = req.params.email;
-        jsonData["role"] = req.params.role;
-        res.send(mongoClient.addUserToApp(jsonData, null));
+        jsonData["name"] = req.body.name;
+        jsonData["email"] = req.body.email;
+        jsonData["role"] = req.body.role;
+        res.send(await mongoClient.addUserToApp(jsonData, null));
         // or just invoke mongoClient.addUserToApp(jsonData, null)
     }
 }

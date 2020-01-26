@@ -3,28 +3,27 @@
 {% block body %}
   <h1>{{title}}</h1>
   <h2>Ask Your Question</h2>
-  <em>Ask your question anonymously without the fear of being judged</em>
+  <p>Ask your question anonymously (your identity will not be shared)</p>
 
-  <form class="" action="/" method="post">
-  <div class="dropdown">
-  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  PLease select your catergory
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-  <a class="dropdown-item" href="#">Education</a>
-  <a class="dropdown-item" href="#">Health</a>
-  <a class="dropdown-item" href="#">Faith</a>
-  <a class="dropdown-item" href="#">Finance</a>
-  <a class="dropdown-item" href="#">Lifestyle</a>
-  <a class="dropdown-item" href="#">Marriage</a>
-</div>
-</div>
-     <br>
-     <div class="w3-textarea w3-select w3-white">
-       <textarea name="question" rows="8" cols="80"></textarea>
-       <br>
+  <form action="/success" method="post">
+    <div class="form-group">
+      <label for="categoryId">Select a category</label>
+      <select class="custom-select mt-3" name="category-id" id="categoryId" required>
+        <option value="" selected>Please select your catergory</option>
+        <option value="education">Education</option>
+        <option value="health">Health</option>
+        <option value="faith">Faith</option>
+        <option value="finance">Finance</option>
+        <option value="lifestyle">Lifestyle</option>
+        <option value="marriage">Marriage</option>
+        <option value="other">other</option>
+      </select>
     </div>
-      <button type="button" class="btn btn-outline-info btn-lg">SUBMIT QUESTION</button>
+    <div class="form-group">
+      <label for="question">What is your question?</label>
+      <textarea class="form-control" name="question" id="question" rows="8" cols="80"></textarea>
+    </div>
+    <button type="submit" class="btn btn-outline-info btn-lg">Submit question</button>
   </form>
 
 {% endblock %}

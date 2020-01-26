@@ -5,7 +5,9 @@ body {
 a {
   color: #00B7FF; }
 
-.container {
+.container, .navbar .container {
   text-align: center; }
+  .container .a, .navbar .container .a {
+    margin: 0 auto; }
 
 /*# sourceMappingURL=style.css.map */

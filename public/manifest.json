@@ -1,0 +1,113 @@
+{
+    "dir" : "ltr",
+    "lang" : "English",
+    "name" : "MosQ",
+    "scope" : "/",
+    "display" : "fullscreen",
+    "start_url" : "https://mosque-qa.herokuapp.com/",
+    "short_name" : "MosQ",
+    "theme_color" : "transparent",
+    "description" : "Mosque Q&A application",
+    "orientation" : "any",
+    "background_color" : "transparent",
+    "related_applications" : "",
+    "prefer_related_applications" : "false",
+    "icons": [
+        {
+            "src": "/images/pwa/e01951f3-eed1-d166-637d-7763e4314e92.webPlatform.png",
+            "sizes": "44x44",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/pwa/15f6b682-f500-ec71-69bc-0137e6560449.webPlatform.png",
+            "sizes": "48x48",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/pwa/a7e2285e-6cbf-9ce4-98f4-3a24181cc123.webPlatform.png",
+            "sizes": "1240x600",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/pwa/9f6a1135-2cc2-24ee-b22f-0f2a95ad5225.webPlatform.png",
+            "sizes": "300x300",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/pwa/7abe6e75-c5d2-1e09-2c74-e602295c8b24.webPlatform.png",
+            "sizes": "150x150",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/pwa/1bdb8b68-dd06-1a10-e3ac-ee717696fab4.webPlatform.png",
+            "sizes": "88x88",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/pwa/caf9dc5c-ac92-9432-8652-67c96f756841.webPlatform.png",
+            "sizes": "24x24",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/pwa/3fd49a33-94f2-d3e1-1e3e-5556ca58aa56.webPlatform.png",
+            "sizes": "50x50",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/pwa/9a6670fb-ba30-43ce-4681-b82ecccaf064.webPlatform.png",
+            "sizes": "620x300",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/pwa/304677bc-f418-b414-aeac-fae232d3779a.webPlatform.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/pwa/627d3dc9-cfae-1d6b-9437-c7b32d5a6344.webPlatform.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/pwa/de34b321-d800-c18d-1548-33d4726016c2.webPlatform.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/pwa/7ca0069e-4a08-143a-2575-8e35ee103db2.webPlatform.png",
+            "sizes": "72x72",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/pwa/8e94c97d-ac9c-adf5-a7b3-e7e916bf9f8b.webPlatform.png",
+            "sizes": "36x36",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/pwa/9d798358-5e5e-e755-a537-827ac97331a6.webPlatform.png",
+            "sizes": "1024x1024",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/pwa/603934cb-7bb1-e547-83b3-f6140aa790ed.webPlatform.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/pwa/78aae650-f051-4549-e1d6-b470c4b5064b.webPlatform.png",
+            "sizes": "152x152",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/pwa/3d54bc0a-91cb-11db-fa02-90e3b811814b.webPlatform.png",
+            "sizes": "120x120",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/pwa/d0823d2f-af23-184a-e871-3edee44c641f.webPlatform.png",
+            "sizes": "76x76",
+            "type": "image/png"
+        }
+    ],
+    "screenshots": []
+}
